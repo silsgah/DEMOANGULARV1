@@ -1,0 +1,43 @@
+<div class="ui raised segment">
+    <h2 class="ui header">Asset Sub Type | <button [disabled]="submitted" *ngIf="!submitted"
+            class="ui primary button default" (click)="newAssetType()"> Add New</button> </h2>
+</div>
+<div class="ui raised segment" *ngIf="submitted">
+    <div>
+        <form [formGroup]="form" class="ui form" [class.error]="!form.valid && form.touched">
+            <div *ngIf="submitted">
+                <div class="field" [class.error]="!title.valid && title.touched">
+                    <label for="title">Asset Type</label>
+                    <input formControlName="assetType" placeholder="Asset sub type..." id="title" name="title" />
+                    <div *ngIf="!title.valid" class="ui error message">Asset type is invalid</div>
+                    <div *ngIf="title.hasError('required')" class="ui error message">Asset sub type is required</div>
+                    <div *ngIf="title.hasError('minLength')" class="ui error message">Asset sub type minimum length
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="description">Description</label>
+                    <input formControlName="assetDescription" placeholder="Asset sub type description..."
+                        class="form-control" id="description" name="description" />
+                    <div *ngIf="assetTypeDescription?.touched && assetType?.invalid" class="ui error message">
+                        Asset Type Description Is Required</div>
+                    <div *ngIf="title.hasError('required')" class="ui error message">Asset sub type is required</div>
+                </div>
+                <div *ngIf="!form.valid" class="ui error message">Form is invalid</div>
+                <button *ngIf="submitted" class="ui secondary button" (click)="cancelAssetType()"> Cancel
+                </button> |
+                <button [disabled]="!form.valid" *ngIf="addsubmitted" (click)="saveAssetType()"
+                    class="ui button">Submit</button> |
+                <button *ngIf="updatesubmitted" class="positive ui button" (click)="updateAssetType()"> Update Record
+                </button> |
+                <button *ngIf="updatesubmitted" class="negative ui button" (click)="deleteAssetType()"> Delete Record
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="!submitted">
+    <ag-grid-angular class="ag-fresh" (gridReady)="onGridReady($event)" style="width: 100%; height: 400px;"
+        class="ag-theme-alpine" (rowSelected)="onSelectionChanged()" [rowData]="assetTypeData" [columnDefs]="columnDefs"
+        pagination="true" paginationPageSize=5>
+    </ag-grid-angular>
+</div>

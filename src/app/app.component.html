@@ -1,0 +1,54 @@
+<!-- Menu Bar -->
+<div class="ui menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <img class="logo" src="assets/images/logo.png" />
+      Task
+    </a>
+    <div class="header item borderless">
+      <h1 class="ui header">
+        Asset Setup
+      </h1>
+    </div>
+  </div>
+</div>
+<div class="ui stackable grid container">
+  <div class="ui menu">
+    <div class="ui container">
+      <div class="header item borderless">
+        <div class="ui secondary  menu">
+          <a class="active item" [routerLink]="['/addAssetType']">
+            Home
+          </a>
+          <a class="item" [routerLink]="['/addAssetType']">
+            Asset Sub Type
+          </a>
+          <a class="item" [routerLink]="['/addAssetType']">
+            Asset Type
+          </a>
+          <div class="ui dropdown item">
+            More
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item"><i class="edit icon"></i> Edit Profile</a>
+              <a class="item"><i class="globe icon"></i> Choose Language</a>
+              <a class="item"><i class="settings icon"></i> Account Settings</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="ui stackable grid container">
+    <div class="ui main text container ten wide column">
+
+    </div>
+  </div>
+  <div class="four wide column">
+    <app-sidebar [items]="examples"></app-sidebar>
+  </div>
+  <div class="ui main text container ten wide column">
+    <router-outlet></router-outlet>
+  </div>
+</div>
